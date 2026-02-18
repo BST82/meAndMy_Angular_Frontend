@@ -1,0 +1,70 @@
+.festival-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  .animated-title {
+  display: block;
+  padding-bottom: 10px;
+  
+  // Saffron to Deep Red Gradient
+  background: linear-gradient(45deg, #ff8c00, #d83232, #ff4500);
+  background-size: 200% auto;
+  
+  // Text Clipping
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+}
+
+
+
+
+  .card-grid {
+    display: grid;
+    // Mobile: 1 col | Tablet: 2 cols | Desktop: 3-4 cols
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .festival-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    
+    // Smooth lift effect on hover
+    &:hover {
+      transform: translateY(-8px);
+    }
+  }
+
+  .image-container {
+    position: relative;
+    
+    .date-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 107, 0, 0.9); // Saffron/Orange theme
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  }
+
+  .object-cover {
+    object-fit: cover;
+  }
+}
+
+// Custom Orange Button for "Me&MyPandit" theme
+:host ::ng-deep .p-button-orange {
+  background: #ff6b00;
+  border-color: #ff6b00;
+  &:hover {
+    background: #e66000;
+  }
+}

@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Header } from "./common-pages/header/header";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule, Header],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('meAndMy-Web');
+export class App implements OnInit {
+
+  ngOnInit() {
+ 
+  }
 }

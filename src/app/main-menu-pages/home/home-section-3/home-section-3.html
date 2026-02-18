@@ -1,0 +1,60 @@
+<div class="muhurat-container">
+  <div class="section-header">
+    <h2 class="animated-title">
+      {{ currentMonth() }} {{ currentYear() }} Muhurats
+    </h2>
+    <div class="underline"></div>
+  </div>
+
+  <div class="card p-4">
+    <p-carousel 
+      [value]="muhurats()" 
+      [numVisible]="3" 
+      [numScroll]="1" 
+      [circular]="true" 
+      [autoplayInterval]="4000" 
+      [responsiveOptions]="responsiveOptions"
+      styleClass="custom-carousel">
+      
+      <ng-template pTemplate="item" let-day>
+        <div class="muhurta-card">
+  <div class="card-header">
+    <div class="date-badge-container">
+      <span class="date-badge">{{ day.date | date:'dd' }}</span>
+      <div class="date-info">
+        <span class="month">{{ day.date | date:'MMM' }}</span>
+        <span class="year">{{ day.date | date:'yyyy' }}</span>
+      </div>
+    </div>
+    <div class="sun-info">
+      <span>🌅 {{ day.sunrise }}</span>
+      <span>🌇 {{ day.sunset }}</span>
+    </div>
+  </div>
+
+  <div class="muhurta-grid">
+    <div class="muhurta-item highlight-box">
+      <span class="label">🟡 Abhijit</span>
+      <span class="value">{{ day.abhijit_muhurat }}</span>
+    </div>
+
+    <div class="muhurta-item info-box">
+      <span class="label">🔵 Gulika</span>
+      <span class="value">{{ day.gulika_kaal }}</span>
+    </div>
+
+    <div class="muhurta-item danger-box">
+      <span class="label">⚫ Rahu Kaal</span>
+      <span class="value">{{ day.rahu_kaal }}</span>
+    </div>
+
+    <div class="muhurta-item warning-box">
+      <span class="label">🟠 Yamaganda</span>
+      <span class="value">{{ day.yamaganda }}</span>
+    </div>
+  </div>
+</div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

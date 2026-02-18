@@ -1,0 +1,85 @@
+<div class="spiritual-bg flex align-items-center justify-content-center min-h-screen p-4">
+    <p-card class="spiritual-card shadow-lg border-round-xl w-full md:w-10 lg:w-4">
+        
+        <div class="text-center mb-5">
+            <div class="bg-red-700 border-circle inline-flex align-items-center justify-content-center mb-3 shadow-2" style="width: 64px; height: 64px">
+                <i class="pi pi-user-plus text-white text-3xl"></i>
+            </div>
+            <div class="text-900 text-4xl font-bold mb-1" style="color: #5D4037;">Create Account</div>
+            <span class="text-700 font-medium">Join our community of Pandits and Astrologers</span>
+        </div>
+
+        <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="grid">
+            
+            <div class="col-12 md:col-6 flex flex-column gap-2 mb-3">
+                <label class="font-bold text-900">Full Name</label>
+                <p-iconField iconPosition="left">
+                    <p-inputIcon class="pi pi-user" style="color: #D84315;" />
+                    <input pInputText formControlName="name" placeholder="Full Name" class="w-full custom-input" />
+                </p-iconField>
+            </div>
+
+            <div class="col-12 md:col-6 flex flex-column gap-2 mb-3">
+                <label class="font-bold text-900">Email Address</label>
+                <p-iconField iconPosition="left">
+                    <p-inputIcon class="pi pi-envelope" style="color: #D84315;" />
+                    <input pInputText formControlName="email" type="email" placeholder="email@example.com" class="w-full custom-input" />
+                </p-iconField>
+            </div>
+
+            <div class="col-12 md:col-6 flex flex-column gap-2 mb-3">
+                <label class="font-bold text-900">Role</label>
+                <p-select [options]="roles" formControlName="role" optionLabel="label" optionValue="value" placeholder="Select Role" styleClass="w-full custom-input"></p-select>
+            </div>
+
+            <div class="col-12 md:col-6 flex flex-column gap-2 mb-3">
+                <label class="font-bold text-900">Phone Number</label>
+                <p-iconField iconPosition="left">
+                    <p-inputIcon class="pi pi-phone" style="color: #D84315;" />
+                    <input pInputText formControlName="phone_number" placeholder="Phone Number" class="w-full custom-input" />
+                </p-iconField>
+            </div>
+
+            <div class="col-12 md:col-6 flex flex-column gap-2 mb-3">
+                <label class="font-bold text-900">Password</label>
+                <p-password 
+                    formControlName="password" 
+                    [toggleMask]="true" 
+                    [feedback]="false"
+                    placeholder="Password" 
+                    styleClass="w-full" 
+                    inputStyleClass="w-full custom-input-match">
+                </p-password>
+            </div>
+            
+            <div class="col-12 md:col-6 flex flex-column gap-2 mb-3">
+                <label class="font-bold text-900">Confirm Password</label>
+                <p-password 
+                    formControlName="confirmPassword" 
+                    [toggleMask]="true" 
+                    [feedback]="false" 
+                    placeholder="Confirm Password" 
+                    styleClass="w-full" 
+                    inputStyleClass="w-full custom-input-match">
+                </p-password>
+                <small class="text-red-600 font-bold" *ngIf="regForm.get('confirmPassword')?.touched && regForm.get('confirmPassword')?.hasError('passwordMismatch')">
+                    Passwords do not match!
+                </small>
+            </div>
+
+            <div class="col-12 mt-4">
+                <p-button 
+                    label="Register Now" 
+                    type="submit" 
+                    [disabled]="regForm.invalid" 
+                    styleClass="w-full p-button-lg spiritual-btn">
+                </p-button>
+            </div>
+
+            <div class="col-12 text-center mt-3">
+                <span class="text-800 font-medium mr-2">Already have an account?</span>
+                <a routerLink="/login" class="font-bold no-underline text-red-700 cursor-pointer hover:underline">Sign In here</a>
+            </div>
+        </form>
+    </p-card>
+</div>

@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
+
+
+body {
+    background-color: var(--p-orange-50); // Optional: light orange background
+    margin: 0;
+}
+/* Define your Spiritual Theme Variables */
+:root {
+    --primary-saffron: #FF9933;
+    --deep-vermilion: #C21807;
+    --soft-pink: #FFF0F2;
+    --text-dark: #3E2723;
+  }
+  
+  /* Application to your Card/Button */
+  .p-card {
+    border-top: 5px solid var(--primary-saffron) !important;
+    background-color: var(--soft-pink) !important;
+  }
+  
+  .p-button {
+    background: linear-gradient(to right, var(--primary-saffron), var(--deep-vermilion)) !important;
+    border: none !important;
+    color: white !important;
+  }
+  
+  .font-semibold {
+      color: var(--deep-vermilion);
+  }

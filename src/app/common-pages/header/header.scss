@@ -1,0 +1,42 @@
+/* ✅ PrimeNG v20 variable override – Header only */
+.header-scope {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  /* 🌼 Main menubar */
+  --p-menubar-background: #ffb74d;
+  --p-menubar-color: #235db1;
+  --p-menubar-padding: 0.5rem 0.75rem;
+  --p-menubar-gap: 0.5rem;
+
+  /* 🌼 Submenu */
+  --p-menubar-submenu-background: #fcd92c;
+  --p-menubar-submenu-color: #6a2c00;
+  --p-menubar-submenu-shadow: 0 4px 12px rgba(0,0,0,0.12);
+
+  /* 🌼 Mobile menu */
+  --p-menubar-mobile-background: #eff62494;
+ /* MENUBAR */
+  --p-menubar-border-color: transparent;
+  --p-menubar-border-radius: 0;
+
+  /* MOBILE ROOT LIST */
+  --p-menubar-submenu-border-color: transparent;
+  --p-menubar-submenu-border-radius: 0;
+
+  /* OPTIONAL: remove shadow too */
+  --p-menubar-submenu-shadow: none;
+
+}
+:host {
+  .p-menuitem-active > .p-menubar-submenu {
+    margin-left: 7px;
+  }
+   .p-menubar-submenu .p-menuitem-active > .p-menubar-submenu {
+    margin-top: 2px;
+    margin-left: 5px;
+  }
+}

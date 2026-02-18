@@ -1,0 +1,63 @@
+<div class="festival-container py-5 px-3">
+<div class="festival-container py-5 px-3">
+  <h2 class="animated-title text-center mb-5 font-bold text-3xl md:text-5xl">
+    Upcoming Festivals & Special Dates
+  </h2>
+
+  </div>
+  <div *ngIf="loading" class="card-grid">
+    <div *ngFor="let i of [1,2,3,4]" class="loading-skeleton">
+       <p-card styleClass="shadow-2">
+         <div class="h-12rem bg-gray-200 mb-3 border-round"></div>
+         <div class="h-2rem bg-gray-200 mb-2 w-8"></div>
+         <div class="h-1rem bg-gray-200 w-5"></div>
+       </p-card>
+    </div>
+  </div>
+
+  <div class="card-grid" *ngIf="!loading">
+    <p-card
+      *ngFor="let festival of festivals; let i = index"
+      styleClass="festival-card shadow-3 hover:shadow-6 transition-all transition-duration-300 border-round-xl overflow-hidden"
+    >
+      <ng-template pTemplate="header">
+        <div class="image-container">
+          <img
+            [src]="getFestivalImage(i)"
+            class="w-full h-15rem object-cover"
+            [alt]="festival.name"
+          />
+          <div class="date-badge">
+             {{ festival.date | date:'MMM d' }}
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="title">
+        <span class="text-xl font-bold text-primary">{{ festival.name }}</span>
+      </ng-template>
+
+      <ng-template pTemplate="subtitle">
+        <div class="flex align-items-center text-600">
+          <i class="pi pi-calendar mr-2"></i>
+          <span>{{ festival.date | date:'fullDate' }}</span>
+        </div>
+      </ng-template>
+
+      <p class="m-0 text-700 line-height-3 text-sm h-4rem overflow-hidden text-overflow-ellipsis">
+        {{ festival.description }}
+      </p>
+
+      <ng-template pTemplate="footer">
+        <div class="flex flex-column gap-2">
+          <p-button 
+            label="View Details" 
+            icon="pi pi-arrow-right" 
+            iconPos="right"
+            styleClass="p-button-raised p-button-orange w-full">
+          </p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

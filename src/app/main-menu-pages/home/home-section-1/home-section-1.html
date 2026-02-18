@@ -1,0 +1,39 @@
+<div class="lunar-container">
+  <div *ngIf="isLoading" class="loading-overlay">
+    <span>Synchronizing with Lunar Orbit...</span>
+  </div>
+
+  <div #rendererContainer class="canvas-wrapper"></div>
+
+  <div class="ui-overlay" *ngIf="!isLoading">
+    
+    <div class="info-panel glass-effect" *ngIf="currentPhase">
+      <div class="location-container">
+        <span class="city-highlight">{{ cityName }}</span>
+        <span class="region-tag">{{ regionInfo }}</span>
+      </div>
+      
+      <div class="phase-meta">
+        <span class="phase-day">{{ currentPhase.day }}</span>
+      </div>
+      
+      <h1 class="phase-title">{{ currentPhase.name }}</h1>
+      <p class="phase-desc">{{ currentPhase.desc }}</p>
+    </div>
+
+    <div class="timeline-container">
+      <div class="nodes-wrapper">
+        <div *ngFor="let phase of lunarPhases; let i = index" 
+             class="node disabled-node" 
+             [class.active]="currentPhase?.id === i"
+             [style.top.%]="10 + (i * 11)" 
+             [style.right.px]="getRightPosition(i)">
+          
+          <div class="node-label">{{ phase.name }}</div>
+          <div class="node-dot"></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

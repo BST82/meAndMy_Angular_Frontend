@@ -1,0 +1,76 @@
+.horoscope-detail {
+  min-height: 100vh;
+  background: #030407; // Match your moon section
+  color: white;
+  padding: 100px 20px 40px; // Padding for sticky header
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .back-btn {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid #00f0ff;
+    color: #00f0ff;
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    transition: 0.3s;
+    &:hover {
+      background: rgba(0, 240, 255, 0.1);
+      box-shadow: 0 0 10px #00f0ff;
+    }
+  }
+
+  .content-card {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+
+    h1 {
+      font-size: 2.5rem;
+      color: #00f0ff;
+      margin-bottom: 5px;
+      text-transform: capitalize;
+    }
+
+    .date {
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .reading-box {
+      line-height: 1.8;
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.9);
+      border-left: 2px solid #00f0ff;
+      padding-left: 20px;
+    }
+  }
+
+  // Simple Pulsing Loader
+  .loader-container {
+    text-align: center;
+    margin-top: 100px;
+    color: #00f0ff;
+    .star-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #00f0ff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+      margin: 0 auto 20px;
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

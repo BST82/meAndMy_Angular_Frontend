@@ -1,0 +1,53 @@
+<div class="spiritual-bg flex align-items-center justify-content-center min-h-screen p-4">
+  <div class="spiritual-card p-5 shadow-lg border-round-xl w-full lg:w-4" style="max-width: 450px;">
+      
+      <div class="text-center mb-5">
+          <div class="bg-red-700 border-circle inline-flex align-items-center justify-content-center mb-3 shadow-2" style="width: 64px; height: 64px">
+              <i class="pi pi-user text-white text-3xl"></i>
+          </div>
+          <div class="text-900 text-3xl font-bold mb-1" style="color: #5D4037;">Pandit Login</div>
+          <span class="text-700 font-medium line-height-3">Enter your details to access your portal</span>
+      </div>
+
+      @if (authService.error()) {
+          <p-message severity="error" [text]="authService.error()!" styleClass="w-full mb-4"></p-message>
+      }
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="mb-4">
+              <label for="email" class="block text-900 font-bold mb-2">Email Address</label>
+              <span class="p-input-icon-left w-full">
+                  <i class="pi pi-envelope" style="color: #D84315;"></i>
+                  <input pInputText id="email" formControlName="email" type="email" placeholder="email@example.com" class="w-full p-inputtext-lg custom-input" />
+              </span>
+          </div>
+
+          <div class="mb-4">
+              <label for="password" class="block text-900 font-bold mb-2">Password</label>
+              <p-password formControlName="password" [feedback]="false" [toggleMask]="true" placeholder="••••••••" styleClass="w-full" inputStyleClass="w-full p-inputtext-lg custom-input" [fluid]="true"></p-password>
+          </div>
+
+          <div class="flex align-items-center justify-content-between mb-5">
+              <div class="flex align-items-center">
+                  <p-checkbox id="remember" [binary]="true" class="mr-2"></p-checkbox>
+                  <label for="remember" class="text-800 cursor-pointer font-medium">Keep me signed in</label>
+              </div>
+              <a class="font-bold no-underline text-red-700 cursor-pointer hover:underline">Forgot?</a>
+          </div>
+
+          <p-button 
+              [label]="authService.isLoading() ? 'Connecting...' : 'Login Now'" 
+              icon="pi pi-sign-in"
+              type="submit" 
+              [disabled]="loginForm.invalid || authService.isLoading()" 
+              styleClass="w-full p-button-lg spiritual-btn"
+              [loading]="authService.isLoading()">
+          </p-button>
+
+          <div class="text-center mt-5">
+              <span class="text-800 font-medium mr-2">New here?</span>
+              <a routerLink="/register" class="font-bold no-underline text-red-700 cursor-pointer hover:underline">Register as Pandit</a>
+          </div>
+      </form>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="horoscope-detail">
+  <button class="back-btn" (click)="goBackToZodiac()">← Back to Zodiac</button>
+
+  <div *ngIf="loading()" class="loader-container">
+    <div class="star-spinner"></div>
+    <p>Consulting the heavens for {{ selectedSign() }}...</p>
+  </div>
+
+  <div class="content-card" *ngIf="!loading() && selectedHoroscope()">
+    <h1 class="capitalize">{{ selectedSign() }} Daily Horoscope</h1>
+    
+    <p class="date">{{ selectedHoroscope().date }}</p>
+
+    <div class="reading-box">
+      <p class="horoscope-text">{{ selectedHoroscope().horoscope_data }}</p>
+    </div>
+
+    <div class="meta-info" *ngIf="selectedHoroscope().week">
+       <span class="tag">Week: {{ selectedHoroscope().week }}</span>
+    </div>
+  </div>
+</div>

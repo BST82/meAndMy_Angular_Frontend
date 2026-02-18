@@ -1,0 +1,138 @@
+<!-- ================= ZODIAC SECTION ================= -->
+<section class="zodiac-section" aria-labelledby="zodiac-title">
+  <h2 id="zodiac-title" class="main-title">Select your sign</h2>
+
+  <nav class="zodiac-grid">
+    @for (sign of zodiacSigns; track sign.name) {
+      <a
+        [routerLink]="['/daily-horoscope', sign.name]"
+        class="zodiac-card"
+        [attr.aria-label]="'horoscope for ' + sign.name"
+      >
+        <div class="icon-wrapper">
+          <span class="zodiac-icon">{{ sign.icon }}</span>
+        </div>
+        <span class="sign-name">{{ sign.name | titlecase }}</span>
+      </a>
+    }
+  </nav>
+</section>
+
+<!-- ================= CALENDAR + CHOGHADIYA ================= -->
+<article class="calendar-container">
+  <div class="grid">
+
+    <!-- ===== CALENDAR ===== -->
+    <section class="col-12 md:col-6 calendar-section">
+      <h2 class="section-title">Celestial calendar</h2>
+
+      <div class="calendar-card">
+        <p-datepicker
+          [(ngModel)]="selectedDate"
+          [inline]="true"
+          (onSelect)="onDateChange($event)"
+          class="custom-datepicker"
+        >
+        </p-datepicker>
+      </div>
+    </section>
+
+    <!-- ===== DIVIDER ===== -->
+    <div class="col-fixed divider-wrapper hidden md:block" style="width: 2px;">
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ===== DATA SECTION ===== -->
+    <section class="col-12 md:col-5 data-section" aria-live="polite">
+
+      <!-- LOADING -->
+      @if (loading()) {
+        <div class="status-box">
+          <p>Fetching celestial data...</p>
+        </div>
+      }
+
+      <!-- DATA -->
+      @else if (panchangData()) {
+        <div class="fade-in">
+
+          <!-- DATE HEADER -->
+          <header class="data-header">
+            <h2 class="date-text">
+              {{ selectedDate() | date: 'dd MMMM, yyyy' }}
+            </h2>
+            <p class="day-text">
+              {{ selectedDate() | date: 'EEEE' | titlecase }}
+            </p>
+          </header>
+
+          <!-- SUNRISE SUNSET -->
+          <div class="sun-timing">
+            <div class="sun-box">
+              🌅 Sunrise: {{ panchangData()?.sunrise }}
+            </div>
+
+            <div class="sun-box">
+              🌇 Sunset: {{ panchangData()?.sunset }}
+            </div>
+          </div>
+
+          <!-- DAY / NIGHT TOGGLE -->
+          <div class="toggle-container">
+            <p-selectButton
+              [options]="viewOptions"
+              [(ngModel)]="viewMode"
+              optionLabel="label"
+              optionValue="value"
+            >
+            </p-selectButton>
+          </div>
+
+          <!-- CHOGHADIYA LIST -->
+          <div class="choghadiya-list">
+
+            <h3 class="sub-title">
+              {{ viewMode() | titlecase }} Choghadiya
+            </h3>
+
+            <!-- ===== DAY ===== -->
+            @if (viewMode() === 'day') {
+              @for (item of panchangData()?.day_choghadiya; track item.start) {
+                <div class="choghadiya-row">
+                  <span class="time-box">
+                    {{ item.start }} - {{ item.end }}
+                  </span>
+
+                  <span
+                    [class]="'type-box ' + item.type.toLowerCase()"
+                  >
+                    {{ item.type | titlecase }}
+                  </span>
+                </div>
+              }
+            }
+
+            <!-- ===== NIGHT ===== -->
+            @else {
+              @for (item of panchangData()?.night_choghadiya; track item.start) {
+                <div class="choghadiya-row">
+                  <span class="time-box">
+                    {{ item.start }} - {{ item.end }}
+                  </span>
+
+                  <span
+                    [class]="'type-box ' + item.type.toLowerCase()"
+                  >
+                    {{ item.type | titlecase }}
+                  </span>
+                </div>
+              }
+            }
+
+          </div>
+        </div>
+      }
+
+    </section>
+  </div>
+</article>
