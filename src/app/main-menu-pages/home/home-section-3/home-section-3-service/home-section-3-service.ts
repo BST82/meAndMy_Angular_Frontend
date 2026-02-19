@@ -13,7 +13,7 @@ export class HomeSection3Service {
   private http = inject(HttpClient);
 
   // ✅ Correct API URL
-  private apiUrl = `${environment.apiUrl}/muhurat/muhurats/current-month`;
+  private apiUrl = `${environment.apiUrl}/muhurat/muhurats/current-month-muhurats`;
 
   getCurrentMonthMuhurat(): Observable<MuhuratResponse> {
     return this.http.get<MuhuratResponse>(this.apiUrl);
